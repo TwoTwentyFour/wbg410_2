@@ -21,29 +21,30 @@
                 <th>Comments</th>
                 <?php 
                     include('dbc.php');
-
                     $query = "SELECT * FROM mailing_list ORDER BY id";
-                    $result = mysqli_query($connection, $query);
-
-                    if ($result == false)
+                    if ($result = mysqli_query($connection, $query))
+                    {
+                        if (mysqli_num_rows($result) == 0)
+                        {
+                            echo '<p>No members are signed up yet.</p>';
+                        }
+                        else
+                        {
+                            while ($row = mysqli_fetch_assoc($result))
+                            {
+                                echo '<tr>
+                                    <td>' . $row['name'] . '</td>
+                                    <td>' . $row['phone'] . '</td>
+                                    <td>' . $row['email'] . '</td>
+                                    <td>' . $row['comments'] . '</td>
+                                </tr>';
+                            }
+                        }
+                    }
+                    else
                     {
                         $error_message = mysqli_error();
                         echo '<p>There has been a query error: $error_message</p>';
-                    }
-
-                    if (mysqli_num_rows($result) == 0)
-                    {
-                        echo '<p>No members are signed up yet.</p>';
-                    }
-
-                    while ($row = mysqli_fetch_assoc($reuslt))
-                    {
-                        echo '<tr>
-                            <td>' . $row['name'] . '</td>
-                            <td>' . $row['phone'] . '</td>
-                            <td>' . $row['email'] . '</td>
-                            <td>' . $row['comments'] . '</td>
-                        </tr>';
                     }
                 ?>
             </table>
