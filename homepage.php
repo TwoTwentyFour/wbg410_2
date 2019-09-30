@@ -1,4 +1,6 @@
 <?php
+session_start();
+$user = $_SESSION['user'];
 
 require_once('dbc.php');
 
@@ -18,6 +20,13 @@ if (mysqli_num_rows($result) == 0)
 
 while ($row = mysqli_fetch_assoc($result))
 {
+    if (isset($user))
+    {
+        echo '<div style="float: right; padding: 10px;">';
+        echo '<a href="edit.php?id=' . $row['id'] . '&table=home_page">Edit</a>';
+        echo '</div>';
+    }
+
 	echo '<h2>' . $row['tilte'] . '</h2>';
 	echo '<p>' . $row['message'] . '</p>';
 }
