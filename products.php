@@ -21,7 +21,7 @@
                     <th>Buy</th>
                 </tr>
                 <?php 
-                    inclue('dbc.php'); 
+                    include('dbc.php'); 
                     $sql = "SELECT * FROM products ORDER BY id ASC;";
                     $result = mysqli_query($connection, $sql);
 
