@@ -23,7 +23,7 @@ while ($row = mysqli_fetch_assoc($result))
     if (isset($user))
     {
         echo '<div style="float: right; padding: 10px;">';
-        echo '<a href="edit.php?id=' . $row['id'] . '&table=home_page">Edit</a>';
+        echo '<a href="ajax_edit.php?id=' . $row['id'] . '&table=home_page">Edit</a>';
         echo '</div>';
     }
 

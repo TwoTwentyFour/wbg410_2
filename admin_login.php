@@ -4,8 +4,8 @@ session_start();
 if (isset($_POST['Submit_Login']))
 {
     $email = trim($_POST['email']);
-    $password = trim($_POST['pwd']);
-    echo $email .'<br>'. $password;
+    $pwd = md5(trim($_POST['pwd']));
+    echo $email .'<br>'. $pwd;
 
     include('dbc.php');
     $sql = "SELECT * FROM users WHERE email = '$email'";

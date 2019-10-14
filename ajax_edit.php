@@ -14,6 +14,29 @@ if (!isset($user))
 <head>
 <title>My Gaming Products Site</title>
 <link href="style.css" rel="stylesheet" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" charset="utf-8">
+<script charset="utf-8">
+    $(document).ready(function() {
+        $('#sendData').click(function() {
+            var theId = $('#id').val();
+            var newTitle = $('#title').val();
+            var newContent = $('#message').val();
+            $.post('AJAX/ajax_update.php', {table:"home_page", id:theId, title:newTitle, message:newContent},
+                function (response, textStatus, jqXHR) {
+                    if (response) {
+                        $('#updateResults').html('The response: ' + response + '<strong>' + textStatus + '</strong>');
+                        $('#updateResults').append('<br><a href="home_page.php">Return to Home Page</a>');
+                    }
+                    else
+                    {
+                        $('#updateResults').html("Sorry! It didn't work!");
+                    }
+            });
+        });
+    });
+</script>
+    
+</script>
 </head>
 
 <body>
@@ -24,8 +47,9 @@ if (!isset($user))
 		<?php include('includes/aside.inc'); ?>
 
 		<section>
+            <h2>Update Home Page</h2>
             <?php  
-                if (isset($_POST['Sumit_Update']))
+                if (isset($_POST['Sumbit_Update']))
                 {
                     include('dbc.php');
                     $table = $_POST['table'];
@@ -45,7 +69,7 @@ if (!isset($user))
                     echo $msg;
                 }
             ?>
-            <form action="<?php  $_SERVER['PHP_SELF']; ?>" method="post">
+            <div id="updateResult">
                 <?php 
                     $id = $_GET['id'];
                     $table = $_GET['table'];
@@ -60,8 +84,8 @@ if (!isset($user))
                         echo '<p><input type="text" name="title" value="' . $row['title'] . '"></p>';
                     }
                 ?>
-                <p><input type="submit" name="Submit_Update" value="Update"></p>
-            </form>
+                <p><input type="button" name="Submit_Update" value="Update" id="sendData"></p>
+            </div>
 		</section>
 	</div>
 
