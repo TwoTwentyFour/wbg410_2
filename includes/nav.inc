@@ -8,6 +8,7 @@
 <li><a href="admin_login.php">Login</a></li>
 <li><a href="sessionEnd.php">Log Out</a></li>
 <li><a href="register.php">Register</a></li>
+<li><a href="contact.php">Contact Us</a></li>
 </ul>
 </nav>
 
