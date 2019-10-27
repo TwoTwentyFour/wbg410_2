@@ -18,6 +18,7 @@
                     <th>Item Name</th>
                     <th>Description</th>
                     <th>Price</th>
+                    <th>Reviews</th>
                     <th>Buy</th>
                 </tr>
                 <?php 
@@ -46,6 +47,7 @@
                                 echo '<td align="center">' . $row['title'] . '</td>';
                                 echo '<td align="center">' . $row['desciption'] . '</td>';
                                 echo '<td align="center">' . $row['price'] . '</td>';
+                                echo '<td align="center"><a href="reviews.php?product_id=' . $row['id'] . '">Reviews</a></td>';
                                 echo '<td align="center"><a href="my_cart.php?id=' . $row['id'] . '">Add to Cart</a></td>';
                                 echo '</tr>';
                             }
